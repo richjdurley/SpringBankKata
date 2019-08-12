@@ -8,7 +8,7 @@ Your task as the lead developer in the team is to implement a straw-man solution
 
 ## Smart-Save API Requirements 
 
-##The functional sprint
+### The functional sprint
 Account
 - register
 - deposit cash
@@ -18,7 +18,7 @@ Account
 Statement query
 - Date, transaction type, transaction amount, rolling balance
 
-##Developer Rules
+### Developer Rules
 - Must use a strict TDD process
 - Must not use abbreviations
 - Must apply SOLID principles
@@ -83,7 +83,7 @@ When multiple deposits and withdrawals are made in random order
 Then the account balance should be returned correctly
 ```
  
-#### Proposed strawman software architecture
+### Proposed strawman software architecture
 
 ![Architecture](./architecture.png?raw=true "Architecture Strawman")
  
