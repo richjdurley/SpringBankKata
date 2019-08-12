@@ -1,8 +1,10 @@
-# Acme Bank Smart-Save TDD Exercise (1 hour coding + 20 min Q&A)
+# Acme Stores Smart-Save TDD Exercise (1 hour coding + 20 min Q&A)
 
-Acme Retail Bank is building a Smart-Save feature to their bank account app that allows an existing loyalty card customer to deposit and withdraw funds to a Smart-Save bank account at the till.  This allows our customers to “Save as they go”, and for our customers to access cash back from their savings at the till if needed.
+Acme Stores a major grocery supermarket in the UK, is building a Smart-Save app that allows an existing loyalty card customer to deposit and withdraw cash from their Smart-Save bank account at the till.  
 
-Your task as the lead developer in the team is to implement a straw-man solution using Java with for the new Smart Save account.  
+This allows our customers to “Save as they go”, and for our customers to access cash back from their savings at the till if needed.
+
+Your task as the lead developer in the team is to implement a straw-man solution using Java and TDD implementing the backend API to support the new Smart Save app.  
 
 ## Smart-Save API Requirements 
 
@@ -24,7 +26,6 @@ Statement query
 - Must use dependency inversion 
 - Should use lamda programming style where appropriate
  
-
 ### The product owner has given the following acceptance test for statement printing
 ```
 Given a customer makes a deposit of 1000 on 10-01-2019
@@ -38,7 +39,7 @@ date       || credit     || debit      || balance
 10/01/2019 || 1000.00    ||            || 1000.00
 ```
 
-### The product owner has given the following acceptance test for the API
+### The product owner has given the following acceptance tests for the API
 
 ```
 Given a SmartSave account registration request 
@@ -88,4 +89,4 @@ Then the account balance should be returned correctly
  
 Starter Project
 
-- A starter project has been prepared for you, with the necessary Spring Boot and Reactor dependencies. 
+- A starter project has been prepared for you, with the necessary Spring Boot dependencies. 
