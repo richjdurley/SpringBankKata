@@ -72,7 +72,8 @@ Then a BadRequest exception should be returned stating “Insufficient funds ava
 ```
 
 ```
-Given a newly created SmartSave account with a deposit of 20.22 and a subsequent withdrawal of 10.00GBP 
+Given a newly created SmartSave account with a deposit of 20.22 
+And a subsequent withdrawal of 10.00GBP 
 When the balance is queried 
 Then it should return 10.22
 ```
