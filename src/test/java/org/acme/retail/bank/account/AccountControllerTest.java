@@ -2,6 +2,7 @@ package org.acme.retail.bank.account;
 
 import com.jayway.restassured.RestAssured;
 import org.junit.Before;
+import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.test.context.ActiveProfiles;
@@ -22,6 +23,7 @@ public class AccountControllerTest {
         RestAssured.baseURI="http://localhost";
     }
 
+    @Test
     public void exampleTest() {
         //given().when().contentType("application/json").header("Authorization-X", "customer-auth-token=" + customerAuthToken).body(accountCreationRequest).post("/account/register").then()
         //        .statusCode(SC_OK)
