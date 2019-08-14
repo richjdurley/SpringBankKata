@@ -24,6 +24,7 @@ Statement query
 - Must apply SOLID principles
 - Must keep all objects small, highly cohesive and isolated
 - Must use dependency inversion 
+- Should use objects in preference to primitives  (e.g. use an Amount object rather than double) 
 - Should use lamda programming style where appropriate
  
 ### The product owner has given the following acceptance test for statement printing
