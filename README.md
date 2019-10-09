@@ -26,19 +26,6 @@ Statement query
 - Must use dependency inversion 
 - Should use objects in preference to primitives  (e.g. use an Amount object rather than double) 
 - Should use lamda programming style where appropriate
- 
-### The product owner has given the following acceptance test for statement printing
-```
-Given a customer makes a deposit of 1000 on 10-01-2019
-And a deposit of 2000 on 13-01-2019
-And a withdrawal of 500 on 14-01-2019
-When she prints her bank statement
-Then she would see
-date       || credit     || debit      || balance
-14/01/2019 ||            || 500.00     || 2500.00
-13/01/2019 || 2000.00    ||            || 3000.00
-10/01/2019 || 1000.00    ||            || 1000.00
-```
 
 ### The product owner has given the following acceptance tests for the API
 
@@ -91,7 +78,20 @@ Given a newly created SmartSave account
 When multiple deposits and withdrawals are made in random order 
 Then the account balance should be returned correctly
 ```
- 
+
+### The product owner has given the following acceptance test for statement printing
+```
+Given a customer makes a deposit of 1000 on 10-01-2019
+And a deposit of 2000 on 13-01-2019
+And a withdrawal of 500 on 14-01-2019
+When she prints her bank statement
+Then she would see
+date       || credit     || debit      || balance
+14/01/2019 ||            || 500.00     || 2500.00
+13/01/2019 || 2000.00    ||            || 3000.00
+10/01/2019 || 1000.00    ||            || 1000.00
+```
+
 ### Proposed strawman software architecture
 
 ![Architecture](./architecture.png?raw=true "Architecture Strawman")
