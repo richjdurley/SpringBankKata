@@ -2,31 +2,74 @@ package org.acme.retail.bank.account;
 
 import com.jayway.restassured.RestAssured;
 import com.jayway.restassured.parsing.Parser;
+import org.hamcrest.Matchers;
 import org.junit.Before;
 import org.junit.Test;
 import org.junit.runner.RunWith;
+import org.mockito.Mockito;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
+import org.springframework.http.HttpStatus;
 import org.springframework.test.context.ActiveProfiles;
 import org.springframework.test.context.junit4.SpringRunner;
+
+import static org.hamcrest.Matchers.is;
 
 @SpringBootTest(classes = AccountApplication.class, webEnvironment = SpringBootTest.WebEnvironment.DEFINED_PORT)
 @RunWith(SpringRunner.class)
 @ActiveProfiles("accountAPITestProfile")
 public class AccountControllerTest {
 
+    public static final String INVALID_TOKEN = "invalid_token";
+    public static final String VALID_CUSTOMER_ID = "valid_customer_id";
+    private static final String VALID_TOKEN = "valid_token";
+    public static final String VALID_ACCOUNT_ID = "VALID_ACCOUNT_ID";
+
+    @Autowired
+    IdentityService identityService;
+
+    @Autowired
+    AccountService accountService;
+
     @Before
     public void setup() {
-        RestAssured.port=8080;
-        RestAssured.baseURI="http://localhost";
+        RestAssured.port = 8080;
+        RestAssured.baseURI = "http://localhost";
         RestAssured.defaultParser = Parser.JSON;
     }
 
     @Test
-    public void exampleTest() {
-        //given().when().contentType("application/json").header("Authorization-X", "customer-auth-token=" + customerAuthToken).body(accountRegistrationRequest).post("/account/register").then()
-        //        .statusCode(SC_OK)
-        //        .body("accountId", is(accountIdToReturn.getAccountId()));
+    public void shouldFailOnInvalidCustomerAuthToken() {
+
+        Mockito.when(identityService.verifyToken(INVALID_TOKEN)).thenReturn(false);
+
+        Account account = new Account();
+
+        RestAssured.given().given().when()
+                .contentType("application/json")
+                .header("Authorization-X", "customer-auth-token=" + INVALID_TOKEN)
+                .body(account)
+                .post("/account/register")
+                .then()
+                .statusCode(HttpStatus.UNAUTHORIZED.value());
     }
 
+    @Test
+    public void shouldAcceptValidCustomerForRegistration() {
+        AccountRequest request = new AccountRequest(VALID_CUSTOMER_ID);
+
+        Mockito.when(identityService.verifyToken(Mockito.any())).thenReturn(true);
+        Mockito.when(accountService.register(request)).thenReturn(VALID_ACCOUNT_ID);
+
+        RestAssured.given().given().when()
+                .contentType("application/json")
+                .header("Authorization-X", "customer-auth-token=" + VALID_TOKEN)
+                .body(request)
+                .post("/account/register")
+                .then()
+                .statusCode(HttpStatus.OK.value()).body(Matchers.is(VALID_ACCOUNT_ID));
+        Mockito.verify(identityService, Mockito.times(1)).verifyToken("customer-auth-token=" + VALID_TOKEN);
+        Mockito.verify(accountService, Mockito.times(1)).register(request);
+    }
 
 }
