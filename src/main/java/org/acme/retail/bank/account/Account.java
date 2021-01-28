@@ -4,14 +4,14 @@ import java.util.UUID;
 
 public class Account {
 
-    private UUID aaccountId;
+    private UUID accountId;
 
-    public UUID getAaccountId() {
-        return aaccountId;
+    public UUID getAccountId() {
+        return accountId;
     }
 
-    public void setAaccountId(UUID aaccountId) {
-        this.aaccountId = aaccountId;
+    public void setAccountId(UUID accountId) {
+        this.accountId = accountId;
     }
 
     @Override
@@ -21,11 +21,11 @@ public class Account {
 
         Account account = (Account) o;
 
-        return aaccountId != null ? aaccountId.equals(account.aaccountId) : account.aaccountId == null;
+        return accountId != null ? accountId.equals(account.accountId) : account.accountId == null;
     }
 
     @Override
     public int hashCode() {
-        return aaccountId != null ? aaccountId.hashCode() : 0;
+        return accountId != null ? accountId.hashCode() : 0;
     }
 }

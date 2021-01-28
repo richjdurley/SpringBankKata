@@ -13,8 +13,6 @@ import org.springframework.http.HttpStatus;
 import org.springframework.test.context.ActiveProfiles;
 import org.springframework.test.context.junit4.SpringRunner;
 
-import static org.hamcrest.Matchers.is;
-
 @SpringBootTest(classes = AccountApplication.class, webEnvironment = SpringBootTest.WebEnvironment.DEFINED_PORT)
 @RunWith(SpringRunner.class)
 @ActiveProfiles("accountAPITestProfile")
@@ -22,9 +20,8 @@ public class AccountControllerTest {
 
     public static final String INVALID_TOKEN = "invalid_token";
     public static final String VALID_CUSTOMER_ID = "valid_customer_id";
-    private static final String VALID_TOKEN = "valid_token";
     public static final String VALID_ACCOUNT_ID = "VALID_ACCOUNT_ID";
-
+    private static final String VALID_TOKEN = "valid_token";
     @Autowired
     IdentityService identityService;
 
@@ -39,7 +36,7 @@ public class AccountControllerTest {
     }
 
     @Test
-    public void shouldFailOnInvalidCustomerAuthToken() {
+    public void should_fail_on_invalid_customer_auth_token() {
 
         Mockito.when(identityService.verifyToken(INVALID_TOKEN)).thenReturn(false);
 
@@ -55,7 +52,7 @@ public class AccountControllerTest {
     }
 
     @Test
-    public void shouldAcceptValidCustomerForRegistration() {
+    public void should_accept_valid_customer_for_registration() {
         AccountRequest request = new AccountRequest(VALID_CUSTOMER_ID);
 
         Mockito.when(identityService.verifyToken(Mockito.any())).thenReturn(true);

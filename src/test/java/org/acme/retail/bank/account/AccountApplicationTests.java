@@ -11,8 +11,8 @@ import org.springframework.test.context.junit4.SpringRunner;
 @ActiveProfiles("accountAPITestProfile")
 public class AccountApplicationTests {
 
-	@Test
-	public void contextLoads() {
-	}
+    @Test
+    public void contextLoads() {
+    }
 
 }
