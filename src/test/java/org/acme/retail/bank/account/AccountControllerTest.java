@@ -42,7 +42,7 @@ public class AccountControllerTest {
 
         Account account = new Account();
 
-        RestAssured.given().given().when()
+        RestAssured.given().when()
                 .contentType("application/json")
                 .header("Authorization-X", "customer-auth-token=" + INVALID_TOKEN)
                 .body(account)
@@ -58,7 +58,7 @@ public class AccountControllerTest {
         Mockito.when(identityService.verifyToken(Mockito.any())).thenReturn(true);
         Mockito.when(accountService.register(request)).thenReturn(VALID_ACCOUNT_ID);
 
-        RestAssured.given().given().when()
+        RestAssured.given().when()
                 .contentType("application/json")
                 .header("Authorization-X", "customer-auth-token=" + VALID_TOKEN)
                 .body(request)
